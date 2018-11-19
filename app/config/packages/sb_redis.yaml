@@ -1,0 +1,5 @@
+sb_redis:
+    clients:
+        default:
+            $options:    []
+            $parameters: { host: '%env(REDIS_URL)%', port: '%env(REDIS_PORT)%', database: '%env(REDIS_DATABASE)%', password: '%env(REDIS_PASSWORD)%'}

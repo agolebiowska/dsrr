@@ -1,19 +1,23 @@
 version: '3'
 services:
-        php:
-                build: build/php
-                expose:
-                        - '9000'
-                volumes:
-                        - ./app:/var/www/html/symfony:cached
-                        - ./logs:/var/log
-        web:
-                build: build/nginx
-                restart: always
-                ports:
-                        - '81:80'
-                depends_on:
-                        - php
-                volumes:
-                        - ./app:/var/www/html/symfony:cached
-                        - ./logs:/var/log/nginx
+  php:
+    build: build/php
+    expose:
+      - '9000'
+    volumes:
+      - ./app:/var/www/html/symfony:cached
+      - ./logs:/var/log
+  web:
+    build: build/nginx
+    restart: always
+    ports:
+      - '81:80'
+    depends_on:
+      - php
+    volumes:
+      - ./app:/var/www/html/symfony:cached
+      - ./logs:/var/log/nginx
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
