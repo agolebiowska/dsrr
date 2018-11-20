@@ -1,0 +1,7 @@
+framework:
+    messenger:
+        transports:
+            test: 'amqp://%env(RABBITMQ_USER)%:%env(RABBITMQ_PASS)%@%env(RABBITMQ_HOST)%:%env(RABBITMQ_PORT)%/%2f/test'
+
+        routing:
+            'App\Message\TestMessage': test
