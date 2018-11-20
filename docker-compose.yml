@@ -2,6 +2,9 @@ version: '3'
 services:
   php:
     build: build/php
+    depends_on:
+      - rabbitmq
+      - redis
     expose:
       - '9000'
     volumes:
@@ -24,3 +27,10 @@ services:
     command: ["sh", "-c", "redis-server --requirepass $${REDIS_PASSWORD}"]
     ports:
       - "6379:6379"
+  rabbitmq:
+    env_file:
+      - ./app/.env
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5673:5672"
+      - "15673:15672"
