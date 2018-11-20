@@ -18,6 +18,9 @@ services:
       - ./app:/var/www/html/symfony:cached
       - ./logs:/var/log/nginx
   redis:
+    env_file:
+      - ./app/.env
     image: redis:latest
+    command: ["sh", "-c", "redis-server --requirepass $${REDIS_PASSWORD}"]
     ports:
       - "6379:6379"
