@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -my \
 	zip \
 	php-apcu \
 	php-redis \
-	php-opcache
+	php-opcache \
+	php-amqp
 
 RUN mkdir /run/php
 
